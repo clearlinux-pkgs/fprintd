@@ -4,7 +4,7 @@
 #
 Name     : fprintd
 Version  : 0.8.0
-Release  : 1
+Release  : 2
 URL      : http://freedesktop.org/~hadess/fprintd-0.8.0.tar.xz
 Source0  : http://freedesktop.org/~hadess/fprintd-0.8.0.tar.xz
 Summary  : D-Bus service to access fingerprint readers
@@ -12,11 +12,13 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: fprintd-bin = %{version}-%{release}
 Requires: fprintd-data = %{version}-%{release}
+Requires: fprintd-lib = %{version}-%{release}
 Requires: fprintd-libexec = %{version}-%{release}
 Requires: fprintd-license = %{version}-%{release}
 Requires: fprintd-locales = %{version}-%{release}
 Requires: fprintd-man = %{version}-%{release}
 Requires: fprintd-services = %{version}-%{release}
+BuildRequires : Linux-PAM-dev
 BuildRequires : docbook-xml
 BuildRequires : gettext
 BuildRequires : gtk-doc
@@ -59,6 +61,17 @@ Group: Data
 
 %description data
 data components for the fprintd package.
+
+
+%package lib
+Summary: lib components for the fprintd package.
+Group: Libraries
+Requires: fprintd-data = %{version}-%{release}
+Requires: fprintd-libexec = %{version}-%{release}
+Requires: fprintd-license = %{version}-%{release}
+
+%description lib
+lib components for the fprintd package.
 
 
 %package libexec
@@ -110,7 +123,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557085868
+export SOURCE_DATE_EPOCH=1557086197
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -129,7 +142,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1557085868
+export SOURCE_DATE_EPOCH=1557086197
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/fprintd
 cp COPYING %{buildroot}/usr/share/package-licenses/fprintd/COPYING
@@ -153,6 +166,10 @@ cp COPYING %{buildroot}/usr/share/package-licenses/fprintd/COPYING
 /usr/share/dbus-1/system-services/net.reactivated.Fprint.service
 /usr/share/dbus-1/system.d/net.reactivated.Fprint.conf
 /usr/share/polkit-1/actions/net.reactivated.fprint.device.policy
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/security/pam_fprintd.so
 
 %files libexec
 %defattr(-,root,root,-)
