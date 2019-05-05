@@ -1,0 +1,43 @@
+This file lists notable changes in each release. For the full history of all
+changes, see ChangeLog.
+
+version 0.8.0:
+- Lockdown the daemon to minimise potential security issues
+- Don't wake up readers when there's no enrolled fingerprints
+
+version 0.7.0:
+- Fix crash in the daemon when cancelling PAM conversation
+- Fix build warnings and update translations
+
+version 0.6.0:
+- Fix warning in fprintd.pod file
+- Reduce logging during normal operation
+- Fix eventfd leak in PAM module
+- List possible values for finger when enrolling
+- Fix possible crash in fprintd-verify
+- Fix listing and deleting fingerprints when there's more than
+  one reader available
+
+version 0.5.1:
+- Add max_tries and timeout arguments to PAM module
+- Add ability to require the fingerprint for enrolled users
+- Add "-f <finger>" option to enroll utilities
+
+version 0.5.0:
+- Don't use a device name if there's only one reader
+- Avoid possible crash when trying to login without devices
+- Fix possible crashes due to uninitialised variables
+- Fix hang when the machine has no USB bus
+- Add a systemd unit file
+
+version 0.4.1:
+- Enable gtk-doc by default so that file aren't
+  missing in the tarball
+
+version 0.4.0:
+- Loads of new translations
+- Fix crasher when PAM module gets unloaded
+- Use GIO to monitor D-Bus clients instead of custom code
+
+version 0.2.0:
+- First actual release

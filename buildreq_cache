@@ -1,0 +1,4 @@
+0.8.0
+libxml2-dev
+pkgconfig(systemd)
+systemd-dev
