@@ -1,2 +1,10 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+Linux-PAM-dev
+pam_wrapper
+pam_wrapper-dev
+pypi(pycairo)
+dbus-python-python3
+pypi-python_dbusmock-python3
+pypi(gi)
+gobject-introspection

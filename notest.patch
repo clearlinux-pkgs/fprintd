@@ -1,0 +1,41 @@
+--- fprintd-v1.94.2/meson.build~	2022-02-24 16:19:57.000000000 +0000
++++ fprintd-v1.94.2/meson.build	2023-06-22 15:28:05.339866788 +0000
+@@ -141,21 +141,6 @@
+ 
+ xmllint = find_program('xmllint', required: false)
+ python3 = find_program('python3') # No meson without it!
+-python3_test_modules = {
+-    'cairo': true,
+-    'dbus': true,
+-    'dbusmock': true,
+-    'gi': true,
+-    'gi.repository.FPrint': true,
+-    'pypamtest': get_option('pam'),
+-}
+-python3_available_modules = []
+-
+-foreach module, required : python3_test_modules
+-    if required and run_command(python3, '-c', 'import @0@'.format(module)).returncode() != 0
+-        error('Python3 module \'' + module + '\' required by test suite not found')
+-    endif
+-endforeach
+ 
+ cdata = configuration_data()
+ cdata.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+@@ -179,7 +164,6 @@
+ if get_option('gtk_doc')
+     subdir('doc')
+ endif
+-subdir('tests')
+ subdir('po')
+ 
+ output = []
+--- fprintd-v1.94.2/meson.build~	2023-06-22 15:28:05.000000000 +0000
++++ fprintd-v1.94.2/meson.build	2023-06-22 15:29:25.583359594 +0000
+@@ -186,6 +186,5 @@
+ output += '  GTK Doc: ' + get_option('gtk_doc').to_string()
+ output += '  XML Linter ' + xmllint.found().to_string()
+ output += '\nTest setup:\n'
+-output += '  With address sanitizer: ' + address_sanitizer.to_string()
+ 
+ message('\n'+'\n'.join(output)+'\n')

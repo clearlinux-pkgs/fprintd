@@ -1,5 +1,13 @@
-0.8.0
-Linux-PAM-dev
+1.94.2
+dbus-dev
+glib-dev
 libxml2-dev
+libxslt-bin
+pkgconfig(dbus-1)
+pkgconfig(glib-2.0)
+pkgconfig(libfprint-2)
+pkgconfig(libsystemd)
+pkgconfig(pam_wrapper)
+pkgconfig(polkit-gobject-1)
 pkgconfig(systemd)
-systemd-dev
+polkit-dev

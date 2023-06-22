@@ -1,5 +1,5 @@
 PKG_NAME := fprintd
-URL = http://freedesktop.org/~hadess/fprintd-0.8.0.tar.xz
+URL = https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.2/fprintd-v1.94.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
