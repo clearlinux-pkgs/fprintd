@@ -5,7 +5,7 @@
 #
 Name     : fprintd
 Version  : 1.94.2
-Release  : 3
+Release  : 5
 URL      : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.2/fprintd-v1.94.2.tar.gz
 Source0  : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.2/fprintd-v1.94.2.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: fprintd-bin = %{version}-%{release}
 Requires: fprintd-data = %{version}-%{release}
+Requires: fprintd-lib = %{version}-%{release}
 Requires: fprintd-libexec = %{version}-%{release}
 Requires: fprintd-license = %{version}-%{release}
 Requires: fprintd-locales = %{version}-%{release}
@@ -70,6 +71,17 @@ Group: Data
 data components for the fprintd package.
 
 
+%package lib
+Summary: lib components for the fprintd package.
+Group: Libraries
+Requires: fprintd-data = %{version}-%{release}
+Requires: fprintd-libexec = %{version}-%{release}
+Requires: fprintd-license = %{version}-%{release}
+
+%description lib
+lib components for the fprintd package.
+
+
 %package libexec
 Summary: libexec components for the fprintd package.
 Group: Default
@@ -125,7 +137,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1687447883
+export SOURCE_DATE_EPOCH=1687448817
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -152,12 +164,14 @@ cp %{_builddir}/fprintd-v%{version}/COPYING %{buildroot}/usr/share/package-licen
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang fprintd
+## install_append content
+mv %{buildroot}/lib64 %{buildroot}/usr
+mv %{buildroot}-v3/lib64 %{buildroot}-v3/usr
+## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
-/V3/lib64/security/pam_fprintd.so
-/lib64/security/pam_fprintd.so
 
 %files bin
 %defattr(-,root,root,-)
@@ -177,6 +191,11 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/share/dbus-1/system-services/net.reactivated.Fprint.service
 /usr/share/dbus-1/system.d/net.reactivated.Fprint.conf
 /usr/share/polkit-1/actions/net.reactivated.fprint.device.policy
+
+%files lib
+%defattr(-,root,root,-)
+/V3/usr/lib64/security/pam_fprintd.so
+/usr/lib64/security/pam_fprintd.so
 
 %files libexec
 %defattr(-,root,root,-)
