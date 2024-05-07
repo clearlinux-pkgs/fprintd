@@ -1,2 +1,0 @@
-mv %{buildroot}/lib64 %{buildroot}/usr
-mv %{buildroot}-v3/lib64 %{buildroot}-v3/usr

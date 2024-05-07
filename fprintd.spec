@@ -7,7 +7,7 @@
 #
 Name     : fprintd
 Version  : 1.94.3
-Release  : 6
+Release  : 7
 URL      : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.3/fprintd-v1.94.3.tar.gz
 Source0  : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.3/fprintd-v1.94.3.tar.gz
 Summary  : No detailed summary available
@@ -46,6 +46,7 @@ BuildRequires : pypi-python_dbusmock-python3
 %define __strip /bin/true
 %define debug_package %{nil}
 Patch1: notest.patch
+Patch2: backport-Use-prefix-to-determine-pam_modules_dir.patch
 
 %description
 fprintd
@@ -131,6 +132,7 @@ services components for the fprintd package.
 %setup -q -n fprintd-v1.94.3
 cd %{_builddir}/fprintd-v1.94.3
 %patch -P 1 -p1
+%patch -P 2 -p1
 pushd ..
 cp -a fprintd-v1.94.3 buildavx2
 popd
@@ -140,7 +142,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1715042414
+export SOURCE_DATE_EPOCH=1715104780
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -192,10 +194,6 @@ DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 GOAMD64=v2
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang fprintd
-## install_append content
-mv %{buildroot}/lib64 %{buildroot}/usr
-mv %{buildroot}-v3/lib64 %{buildroot}-v3/usr
-## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files

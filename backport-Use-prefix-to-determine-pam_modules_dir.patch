@@ -1,0 +1,25 @@
+From f00beb19ff1a372fa8f0e23f4dc6ab4bb0026b94 Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Tue, 7 May 2024 10:48:09 -0700
+Subject: [PATCH] Use prefix to determine pam_modules_dir
+
+---
+ pam/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pam/meson.build b/pam/meson.build
+index e95bcde88230..a009895cf370 100644
+--- a/pam/meson.build
++++ b/pam/meson.build
+@@ -1,7 +1,7 @@
+ mapfile = files('pam_fprintd.ver')
+ pam_modules_dir = get_option('pam_modules_dir')
+ if pam_modules_dir == ''
+-    pam_modules_dir = '/' / get_option('libdir') / 'security'
++    pam_modules_dir = get_option('prefix') / get_option('libdir') / 'security'
+ endif
+ 
+ pam_fprintd = shared_module('pam_fprintd',
+-- 
+2.45.0
+
