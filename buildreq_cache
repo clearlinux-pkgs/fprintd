@@ -1,4 +1,4 @@
-1.94.2
+1.94.3
 dbus-dev
 glib-dev
 libxml2-dev
@@ -7,7 +7,7 @@ pkgconfig(dbus-1)
 pkgconfig(glib-2.0)
 pkgconfig(libfprint-2)
 pkgconfig(libsystemd)
-pkgconfig(pam_wrapper)
 pkgconfig(polkit-gobject-1)
 pkgconfig(systemd)
 polkit-dev
+pypi(packaging)
