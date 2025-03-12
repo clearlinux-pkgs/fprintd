@@ -6,10 +6,10 @@
 # autospec commit: be3faa5
 #
 Name     : fprintd
-Version  : 1.94.4
-Release  : 9
-URL      : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.4/fprintd-v1.94.4.tar.gz
-Source0  : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.4/fprintd-v1.94.4.tar.gz
+Version  : 1.94.5
+Release  : 10
+URL      : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.5/fprintd-v1.94.5.tar.gz
+Source0  : https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/v1.94.5/fprintd-v1.94.5.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -127,10 +127,10 @@ services components for the fprintd package.
 
 
 %prep
-%setup -q -n fprintd-v1.94.4
-cd %{_builddir}/fprintd-v1.94.4
+%setup -q -n fprintd-v1.94.5
+cd %{_builddir}/fprintd-v1.94.5
 pushd ..
-cp -a fprintd-v1.94.4 buildavx2
+cp -a fprintd-v1.94.5 buildavx2
 popd
 
 %build
@@ -138,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1741799628
+export SOURCE_DATE_EPOCH=1741800234
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
