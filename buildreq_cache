@@ -10,3 +10,4 @@ pkgconfig(libsystemd)
 pkgconfig(polkit-gobject-1)
 pkgconfig(systemd)
 polkit-dev
+valgrind
